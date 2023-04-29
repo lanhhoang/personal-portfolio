@@ -29,19 +29,19 @@ function Home() {
           <li className="item">
             <h2>Front-End</h2>
             <span>
-              ReactJS, Redux, Angular, HTML, CSS, NPM, Yarn, Bootstrap, Material
+              React, Redux, Angular, HTML, CSS, NPM, Yarn, Bootstrap, Material
               UI
             </span>
           </li>
           <li className="item">
             <h2>Back-End</h2>
             <span>
-              Ruby on Rails, NodeJS, ExpressJS, PostgreSQL, MySQL, MongoDB, AWS,
-              GCP
+              Ruby on Rails, NodeJS, ExpressJS, PostgreSQL, MySQL, MongoDB,
+              Amazon Web Services, Google Cloud Platform
             </span>
           </li>
           <li className="item">
-            <h2>Languages</h2>
+            <h2>Programming Languages</h2>
             <span>Ruby, Python, JavaScript, TypeScript, Java, C#</span>
           </li>
         </ol>

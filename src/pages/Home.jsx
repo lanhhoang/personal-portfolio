@@ -2,7 +2,7 @@ import React from "react";
 import IconButton from "@material-ui/core/IconButton";
 import GitHubIcon from "@material-ui/icons/GitHub";
 import LinkedInIcon from "@material-ui/icons/LinkedIn";
-import TwitterIcon from "@material-ui/icons/Twitter";
+import CodeIcon from "@material-ui/icons/Code";
 import "../styles/Home.scss";
 
 function Home() {
@@ -12,14 +12,14 @@ function Home() {
         <h2>Hi, My name is Lukas</h2>
         <div className="prompt">
           <p>A software developer with a passion for leaning and creating</p>
-          <IconButton href="https://github.com/lanhhoang" target="_blank">
-            <GitHubIcon />
-          </IconButton>
           <IconButton href="https://www.linkedin.com/in/lanh" target="_blank">
             <LinkedInIcon />
           </IconButton>
-          <IconButton href="https://twitter.com/luka5h" target="_blank">
-            <TwitterIcon />
+          <IconButton href="https://github.com/lanhhoang" target="_blank">
+            <GitHubIcon />
+          </IconButton>
+          <IconButton href="https://leetcode.com/lanhhoang" target="_blank">
+            <CodeIcon />
           </IconButton>
         </div>
       </div>

@@ -1,3 +1,5 @@
-const schemas: never[] = [];
+import project from "./project.schema";
+
+const schemas = [project];
 
 export default schemas;

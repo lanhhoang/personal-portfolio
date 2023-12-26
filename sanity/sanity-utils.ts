@@ -19,8 +19,30 @@ export async function getProjects(): Promise<Project[]> {
       name,
       "slug": slug.current,
       "image": image.asset->url,
-      alt,
       url
     }`
+  );
+}
+
+export async function getProject(slug: string): Promise<Project> {
+  const client = createClient({
+    projectId,
+    dataset,
+    apiVersion: "2023-12-24",
+    useCdn: true,
+  });
+
+  return client.fetch(
+    groq`*[_type == "project" && slug.current == $slug][0]{
+      _id,
+      _createdAt,
+      name,
+      "slug": slug.current,
+      "image": image.asset->url,
+      "alt": image.alt,
+      url,
+      description
+    }`,
+    { slug }
   );
 }

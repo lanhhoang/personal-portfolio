@@ -28,6 +28,12 @@ const profile = {
       ],
     },
     {
+      name: "intro",
+      title: "Intro",
+      type: "array",
+      of: [{ type: "block" }],
+    },
+    {
       name: "about",
       title: "About",
       type: "array",

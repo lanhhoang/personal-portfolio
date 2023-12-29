@@ -72,6 +72,7 @@ export async function getProfile(slug: string): Promise<Profile> {
         "slug": slug.current,
         "image": image.asset->url,
         "alt": image.alt,
+        intro,
         about,
         skills,
         resume,

@@ -71,7 +71,7 @@ export default function Intro() {
             initial={{ opacity: 0, y: 100 }}
             animate={{ opacity: 1, y: 0 }}
           >
-            <PortableText value={profile.about} />
+            <PortableText value={profile.intro} />
           </motion.p>
 
           <motion.div

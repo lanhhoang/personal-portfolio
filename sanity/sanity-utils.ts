@@ -1,4 +1,5 @@
 import { Page } from "@/types/Page";
+import { Profile } from "@/types/Profile";
 import { Project } from "@/types/Project";
 import { createClient, groq } from "next-sanity";
 import clientConfig from "./config/client.config";
@@ -55,6 +56,28 @@ export async function getPage(slug: string): Promise<Page> {
         title,
         "slug": slug.current,
         content
+      }
+    `,
+    { slug }
+  );
+}
+
+export async function getProfile(slug: string): Promise<Profile> {
+  return createClient(clientConfig).fetch(
+    groq`
+      *[_type == "profile" && slug.current == $slug][0]{
+        _id,
+        _createdAt,
+        name,
+        "slug": slug.current,
+        "image": image.asset->url,
+        "alt": image.alt,
+        about,
+        skills,
+        resume,
+        linkedin,
+        github,
+        leetcode
       }
     `,
     { slug }

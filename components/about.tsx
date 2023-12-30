@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import SectionHeading from "./section-heading";
+import LoadingSpinner from "./loading-spinner";
 import { motion } from "framer-motion";
 import { Profile } from "@/types/Profile";
 import { getProfile } from "@/sanity/sanity-utils";
@@ -38,9 +39,7 @@ export default function About() {
           </p>
         </motion.section>
       ) : (
-        <div className="flex items-center justify-center rounded-full w-14 h-14 bg-gradient-to-tr from-indigo-500 to-pink-500">
-          <div className="h-9 w-9 rounded-full bg-gray-200"></div>
-        </div>
+        <LoadingSpinner />
       )}
     </div>
   );

@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import LoadingSpinner from "./loading-spinner";
 import { motion } from "framer-motion";
 import { BsArrowRight } from "react-icons/bs";
 import { HiDownload } from "react-icons/hi";
@@ -66,13 +67,13 @@ export default function Intro() {
             </div>
           </div>
 
-          <motion.p
+          <motion.h1
             className="mb-10 mt-4 px-4 text-2xl font-medium !leading-[1.5] sm:text-4xl"
             initial={{ opacity: 0, y: 100 }}
             animate={{ opacity: 1, y: 0 }}
           >
-            <PortableText value={profile.about} />
-          </motion.p>
+            <PortableText value={profile.intro} />
+          </motion.h1>
 
           <motion.div
             className="flex flex-col sm:flex-row items-center justify-center gap-2 px-4 text-lg font-medium"
@@ -123,9 +124,7 @@ export default function Intro() {
           </motion.div>
         </section>
       ) : (
-        <div className="flex items-center justify-center rounded-full w-14 h-14 bg-gradient-to-tr from-indigo-500 to-pink-500">
-          <div className="h-9 w-9 rounded-full bg-gray-200"></div>
-        </div>
+        <LoadingSpinner />
       )}
     </div>
   );

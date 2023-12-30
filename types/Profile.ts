@@ -7,6 +7,7 @@ export type Profile = {
   slug: string;
   image: string;
   alt: string;
+  intro: PortableTextBlock[];
   about: PortableTextBlock[];
   skills: string[];
   resume: string;

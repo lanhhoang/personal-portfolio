@@ -9,4 +9,5 @@ export type Project = {
   alt: string;
   url: string;
   description: PortableTextBlock[];
+  tags: string[];
 };

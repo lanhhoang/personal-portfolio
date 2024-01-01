@@ -23,7 +23,7 @@ export default function Projects() {
   };
 
   return (
-    <section>
+    <section id="projects" className="scroll-mt-28">
       <SectionHeading>Projects</SectionHeading>
       <div>
         {projects.map((project, index) => (

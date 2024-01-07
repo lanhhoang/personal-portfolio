@@ -3,6 +3,7 @@
 import { Fragment, useState, useEffect } from "react";
 import Project from "./project";
 import SectionHeading from "./section-heading";
+import LoadingSpinner from "./loading-spinner";
 import { getProjects } from "@/sanity/sanity-utils";
 import { Project as ProjectType } from "@/types/Project";
 import { useSectionInView } from "@/lib/hooks";
@@ -25,15 +26,21 @@ export default function Projects() {
   };
 
   return (
-    <section ref={ref} id="projects" className="scroll-mt-28">
-      <SectionHeading>Projects</SectionHeading>
-      <div>
-        {projects.map((project, index) => (
-          <Fragment key={index}>
-            <Project project={project} />
-          </Fragment>
-        ))}
-      </div>
-    </section>
+    <Fragment>
+      {projects ? (
+        <section ref={ref} id="projects" className="scroll-mt-28">
+          <SectionHeading>Projects</SectionHeading>
+          <div>
+            {projects.map((project, index) => (
+              <Fragment key={index}>
+                <Project project={project} />
+              </Fragment>
+            ))}
+          </div>
+        </section>
+      ) : (
+        <LoadingSpinner />
+      )}
+    </Fragment>
   );
 }

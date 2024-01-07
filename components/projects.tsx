@@ -28,7 +28,7 @@ export default function Projects() {
   return (
     <Fragment>
       {projects.length > 0 ? (
-        <section ref={ref} id="projects" className="scroll-mt-28">
+        <section ref={ref} id="projects" className="scroll-mt-28 mb-28">
           <SectionHeading>Projects</SectionHeading>
           <div>
             {projects.map((project, index) => (

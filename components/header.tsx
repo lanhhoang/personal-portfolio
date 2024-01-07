@@ -1,6 +1,5 @@
 "use client";
 
-import { useContext } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import clsx from "clsx";

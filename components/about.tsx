@@ -7,22 +7,15 @@ import { motion } from "framer-motion";
 import { Profile } from "@/types/Profile";
 import { getProfile } from "@/sanity/sanity-utils";
 import { PortableText } from "@portabletext/react";
-import { useInView } from "react-intersection-observer";
-import { useActiveSectionContext } from "@/context/active-section-context";
+import { useSectionInView } from "@/lib/hooks";
 
 export default function About() {
   const [profile, setProfile] = useState<Profile | null>(null);
-  const { ref, inView } = useInView({
-    threshold: 0.75,
-  });
-  const { setActiveSection, timeOfLastClick } = useActiveSectionContext();
+  const { ref } = useSectionInView("About");
 
   useEffect(() => {
     fetchProfile();
-    if (inView && Date.now() - timeOfLastClick > 1000) {
-      setActiveSection("About");
-    }
-  }, [inView, setActiveSection, timeOfLastClick]);
+  }, []);
 
   const fetchProfile = async () => {
     try {

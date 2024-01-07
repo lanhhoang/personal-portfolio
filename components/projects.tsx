@@ -5,22 +5,15 @@ import Project from "./project";
 import SectionHeading from "./section-heading";
 import { getProjects } from "@/sanity/sanity-utils";
 import { Project as ProjectType } from "@/types/Project";
-import { useInView } from "react-intersection-observer";
-import { useActiveSectionContext } from "@/context/active-section-context";
+import { useSectionInView } from "@/lib/hooks";
 
 export default function Projects() {
   const [projects, setProjects] = useState<ProjectType[] | []>([]);
-  const { ref, inView } = useInView({
-    threshold: 0.5,
-  });
-  const { setActiveSection, timeOfLastClick } = useActiveSectionContext();
+  const { ref } = useSectionInView("Projects", 0.5);
 
   useEffect(() => {
     fetchProjects();
-    if (inView && Date.now() - timeOfLastClick > 1000) {
-      setActiveSection("Projects");
-    }
-  }, [inView, setActiveSection, timeOfLastClick]);
+  }, []);
 
   const fetchProjects = async () => {
     try {

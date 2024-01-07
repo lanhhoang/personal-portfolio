@@ -27,7 +27,7 @@ export default function Projects() {
 
   return (
     <Fragment>
-      {projects ? (
+      {projects.length > 0 ? (
         <section ref={ref} id="projects" className="scroll-mt-28">
           <SectionHeading>Projects</SectionHeading>
           <div>

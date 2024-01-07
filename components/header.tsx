@@ -1,14 +1,15 @@
 "use client";
 
-import { useState } from "react";
+import { useContext } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import clsx from "clsx";
 
 import { links } from "@/lib/data";
+import { useActiveSectionContext } from "@/context/active-section-context";
 
 export default function Header() {
-  const [activeSection, setActiveSection] = useState("Home");
+  const { activeSection, setActiveSection } = useActiveSectionContext();
 
   return (
     <header className="z-[999] relative">

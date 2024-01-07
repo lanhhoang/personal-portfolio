@@ -7,9 +7,11 @@ import { motion } from "framer-motion";
 import { Profile } from "@/types/Profile";
 import { getProfile } from "@/sanity/sanity-utils";
 import { PortableText } from "@portabletext/react";
+import { useSectionInView } from "@/lib/hooks";
 
 export default function About() {
   const [profile, setProfile] = useState<Profile | null>(null);
+  const { ref } = useSectionInView("About");
 
   useEffect(() => {
     fetchProfile();
@@ -28,10 +30,12 @@ export default function About() {
     <div>
       {profile ? (
         <motion.section
-          className="mb-28 max-w-[45rem] text-center leading-8 sm:mb-40"
+          ref={ref}
+          className="mb-28 max-w-[45rem] text-center leading-8 sm:mb-40 scroll-mt-28"
           initial={{ opacity: 0, y: 100 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.175 }}
+          id="about"
         >
           <SectionHeading>About me</SectionHeading>
           <p className="mb-3">

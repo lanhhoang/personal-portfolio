@@ -12,9 +12,11 @@ import { SiLeetcode } from "react-icons/si";
 import { Profile } from "@/types/Profile";
 import { getProfile } from "@/sanity/sanity-utils";
 import { PortableText } from "@portabletext/react";
+import { useSectionInView } from "@/lib/hooks";
 
 export default function Intro() {
   const [profile, setProfile] = useState<Profile | null>(null);
+  const { ref } = useSectionInView("Home", 0.5);
 
   useEffect(() => {
     fetchProfile();
@@ -32,7 +34,11 @@ export default function Intro() {
   return (
     <div>
       {profile ? (
-        <section className="mb-28 max-w-[50rem] text-center sm:mb-0">
+        <section
+          ref={ref}
+          id="home"
+          className="mb-28 max-w-[50rem] text-center sm:mb-0 scroll-mt-[100rem]"
+        >
           <div className="flex items-center justify-center">
             <div className="relative">
               <motion.div

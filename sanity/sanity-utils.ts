@@ -1,3 +1,4 @@
+import { Experience } from "@/types/Experience";
 import { Page } from "@/types/Page";
 import { Profile } from "@/types/Profile";
 import { Project } from "@/types/Project";
@@ -86,5 +87,24 @@ export async function getProfile(slug: string): Promise<Profile> {
       }
     `,
     { slug }
+  );
+}
+
+export async function getExperiences(): Promise<Experience[]> {
+  return createClient(clientConfig).fetch(
+    groq`
+      *[_type == "experience"] | order(_createdAt desc) {
+        _id,
+        _createdAt,
+        company,
+        jobTitle,
+        "slug": slug.current,
+        location,
+        startDate,
+        endDate,
+        description,
+        skills
+      }
+    `
   );
 }

@@ -13,6 +13,7 @@ import "react-vertical-timeline-component/style.min.css";
 import { getExperiences } from "@/sanity/sanity-utils";
 import { Experience as ExperienceType } from "@/types/Experience";
 import { PortableText } from "@portabletext/react";
+import { useSectionInView } from "@/lib/hooks";
 
 const getExperienceDate = (startDate: string, endDate: string) => {
   const start = new Date(startDate).getFullYear();
@@ -28,6 +29,7 @@ const getExperienceDate = (startDate: string, endDate: string) => {
 
 export default function Experience() {
   const [experiences, setExperiences] = useState<ExperienceType[] | []>([]);
+  const { ref } = useSectionInView("Experience", 0.75);
 
   useEffect(() => {
     fetchExperiences();
@@ -45,7 +47,11 @@ export default function Experience() {
   return (
     <Fragment>
       {experiences.length > 0 ? (
-        <section id="experience">
+        <section
+          ref={ref}
+          id="experience"
+          className="scroll-mt-28 mb-28 sm:mb-40"
+        >
           <SectionHeading>Experience</SectionHeading>
           <VerticalTimeline lineColor="">
             {experiences.map((experience, index) => (

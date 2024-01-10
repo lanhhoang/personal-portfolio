@@ -13,10 +13,12 @@ import { Profile } from "@/types/Profile";
 import { getProfile } from "@/sanity/sanity-utils";
 import { PortableText } from "@portabletext/react";
 import { useSectionInView } from "@/lib/hooks";
+import { useActiveSectionContext } from "@/context/active-section-context";
 
 export default function Intro() {
   const [profile, setProfile] = useState<Profile | null>(null);
   const { ref } = useSectionInView("Home", 0.5);
+  const { setActiveSection, setTimeOfLastClick } = useActiveSectionContext();
 
   useEffect(() => {
     fetchProfile();
@@ -90,6 +92,10 @@ export default function Intro() {
             <Link
               href="#contact"
               className="group bg-gray-900 text-white px-7 py-3 flex items-center gap-2 rounded-full outline-none focus:scale-110 hover:scale-110 hover:bg-gray-950 active:scale-105 transition"
+              onClick={() => {
+                setActiveSection("Contact");
+                setTimeOfLastClick(Date.now());
+              }}
             >
               Contact me here{" "}
               <BsArrowRight className="opacity-70 group-hover:translate-x-1 transition" />

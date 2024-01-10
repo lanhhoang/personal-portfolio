@@ -29,7 +29,7 @@ const getExperienceDate = (startDate: string, endDate: string) => {
 
 export default function Experience() {
   const [experiences, setExperiences] = useState<ExperienceType[] | []>([]);
-  const { ref } = useSectionInView("Experience", 0.75);
+  const { ref } = useSectionInView("Experience", 0.5);
 
   useEffect(() => {
     fetchExperiences();

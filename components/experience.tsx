@@ -29,7 +29,7 @@ const getExperienceDate = (startDate: string, endDate: string) => {
 
 export default function Experience() {
   const [experiences, setExperiences] = useState<ExperienceType[] | []>([]);
-  const { ref } = useSectionInView("Experience", 0.75);
+  const { ref } = useSectionInView("Experience", 0.5);
 
   useEffect(() => {
     fetchExperiences();
@@ -82,9 +82,9 @@ export default function Experience() {
                     {experience.jobTitle}
                   </h3>
                   <p className="font-normal !mt-0">{experience.company}</p>
-                  <p className="!mt-1 !font-normal text-gray-700">
+                  <div className="!mt-1 !font-normal text-gray-700">
                     <PortableText value={experience.description} />
-                  </p>
+                  </div>
                 </VerticalTimelineElement>
               </Fragment>
             ))}

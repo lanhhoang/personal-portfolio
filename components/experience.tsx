@@ -82,9 +82,9 @@ export default function Experience() {
                     {experience.jobTitle}
                   </h3>
                   <p className="font-normal !mt-0">{experience.company}</p>
-                  <p className="!mt-1 !font-normal text-gray-700">
+                  <div className="!mt-1 !font-normal text-gray-700">
                     <PortableText value={experience.description} />
-                  </p>
+                  </div>
                 </VerticalTimelineElement>
               </Fragment>
             ))}

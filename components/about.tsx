@@ -38,9 +38,9 @@ export default function About() {
           id="about"
         >
           <SectionHeading>About me</SectionHeading>
-          <p className="mb-3">
+          <div className="mb-3">
             <PortableText value={profile.about} />
-          </p>
+          </div>
         </motion.section>
       ) : (
         <LoadingSpinner />

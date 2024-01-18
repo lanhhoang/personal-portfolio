@@ -4,6 +4,7 @@ import "../globals.css";
 
 import Header from "@/components/header";
 import Footer from "@/components/footer";
+import ThemeSwitch from "@/components/theme-switch";
 import { Toaster } from "react-hot-toast";
 
 import ActiveSectionContextProvider from "@/context/active-section-context";
@@ -34,6 +35,8 @@ export default function RootLayout({
           <Footer />
           <Toaster position="top-right" />
         </ActiveSectionContextProvider>
+
+        <ThemeSwitch />
       </body>
     </html>
   );

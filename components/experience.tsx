@@ -14,6 +14,7 @@ import { getExperiences } from "@/sanity/sanity-utils";
 import { Experience as ExperienceType } from "@/types/Experience";
 import { PortableText } from "@portabletext/react";
 import { useSectionInView } from "@/lib/hooks";
+import { useThemeContext } from "@/context/theme-context";
 
 const getExperienceDate = (startDate: string, endDate: string) => {
   const start = new Date(startDate).getFullYear();
@@ -30,6 +31,7 @@ const getExperienceDate = (startDate: string, endDate: string) => {
 export default function Experience() {
   const [experiences, setExperiences] = useState<ExperienceType[] | []>([]);
   const { ref } = useSectionInView("Experience", 0.5);
+  const { theme } = useThemeContext();
 
   useEffect(() => {
     fetchExperiences();
@@ -58,14 +60,20 @@ export default function Experience() {
               <Fragment key={index}>
                 <VerticalTimelineElement
                   contentStyle={{
-                    background: "#f3f4f6",
+                    background:
+                      theme === "light"
+                        ? "#f3f4f6"
+                        : "rgba(255, 255, 255, 0.05)",
                     boxShadow: "none",
                     border: "1px solid rgba(0, 0, 0, 0.05)",
                     textAlign: "left",
                     padding: "1.3rem 2rem",
                   }}
                   contentArrowStyle={{
-                    borderRight: "0.4rem solid #9ca3af",
+                    borderRight:
+                      theme === "light"
+                        ? "0.4rem solid #9ca3af"
+                        : "0.4rem solid rgba(255, 255, 255, 0.05)",
                   }}
                   date={getExperienceDate(
                     experience.startDate,
@@ -73,7 +81,8 @@ export default function Experience() {
                   )}
                   icon={<CgWorkAlt />}
                   iconStyle={{
-                    background: "white",
+                    background:
+                      theme === "light" ? "white" : "rgba(255, 255, 255, 0.15)",
                     fontSize: "1.5rem",
                   }}
                   visible={true}
@@ -82,7 +91,7 @@ export default function Experience() {
                     {experience.jobTitle}
                   </h3>
                   <p className="font-normal !mt-0">{experience.company}</p>
-                  <div className="!mt-1 !font-normal text-gray-700">
+                  <div className="!mt-1 !font-normal text-gray-700 dark:text-white/75">
                     <PortableText value={experience.description} />
                   </div>
                 </VerticalTimelineElement>

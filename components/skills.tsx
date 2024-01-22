@@ -1,13 +1,12 @@
 "use client";
 
-import { Fragment, useState, useEffect } from "react";
+import { Fragment } from "react";
 import SectionHeading from "./section-heading";
 import LoadingSpinner from "./loading-spinner";
 import { useSectionInView } from "@/lib/hooks";
-import { animate, delay, motion } from "framer-motion";
+import { motion } from "framer-motion";
 
 import { Profile } from "@/types/Profile";
-import { getProfile } from "@/sanity/sanity-utils";
 
 const fadeInAnimationVariants = {
   initial: {
@@ -23,22 +22,10 @@ const fadeInAnimationVariants = {
   }),
 };
 
-export default function Skills() {
-  const [profile, setProfile] = useState<Profile | null>(null);
+type SkillsProps = { profile: Profile };
+
+export default function Skills({ profile }: SkillsProps) {
   const { ref } = useSectionInView("Skills");
-
-  useEffect(() => {
-    fetchProfile();
-  }, []);
-
-  const fetchProfile = async () => {
-    try {
-      const data = await getProfile("lucas");
-      setProfile(data);
-    } catch (error) {
-      console.error("Error fetching profile:", error);
-    }
-  };
 
   return (
     <Fragment>

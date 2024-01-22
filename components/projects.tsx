@@ -1,29 +1,18 @@
 "use client";
 
-import { Fragment, useState, useEffect } from "react";
+import { Fragment } from "react";
 import Project from "./project";
 import SectionHeading from "./section-heading";
 import LoadingSpinner from "./loading-spinner";
-import { getProjects } from "@/sanity/sanity-utils";
 import { Project as ProjectType } from "@/types/Project";
 import { useSectionInView } from "@/lib/hooks";
 
-export default function Projects() {
-  const [projects, setProjects] = useState<ProjectType[] | []>([]);
+type ProjectsProps = {
+  projects: ProjectType[];
+};
+
+export default function Projects({ projects }: ProjectsProps) {
   const { ref } = useSectionInView("Projects", 0.5);
-
-  useEffect(() => {
-    fetchProjects();
-  }, []);
-
-  const fetchProjects = async () => {
-    try {
-      const data = await getProjects();
-      setProjects(data);
-    } catch (error) {
-      console.error("Error fetching projects:", error);
-    }
-  };
 
   return (
     <Fragment>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { Fragment } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import LoadingSpinner from "./loading-spinner";
@@ -10,31 +10,18 @@ import { HiDownload } from "react-icons/hi";
 import { FaLinkedin, FaGithubSquare } from "react-icons/fa";
 import { SiLeetcode } from "react-icons/si";
 import { Profile } from "@/types/Profile";
-import { getProfile } from "@/sanity/sanity-utils";
 import { PortableText } from "@portabletext/react";
 import { useSectionInView } from "@/lib/hooks";
 import { useActiveSectionContext } from "@/context/active-section-context";
 
-export default function Intro() {
-  const [profile, setProfile] = useState<Profile | null>(null);
+type IntroProps = { profile: Profile };
+
+export default function Intro({ profile }: IntroProps) {
   const { ref } = useSectionInView("Home", 0.5);
   const { setActiveSection, setTimeOfLastClick } = useActiveSectionContext();
 
-  useEffect(() => {
-    fetchProfile();
-  }, []);
-
-  const fetchProfile = async () => {
-    try {
-      const data = await getProfile("lucas");
-      setProfile(data);
-    } catch (error) {
-      console.error("Error fetching profile:", error);
-    }
-  };
-
   return (
-    <div>
+    <Fragment>
       {profile ? (
         <section
           ref={ref}
@@ -138,6 +125,6 @@ export default function Intro() {
       ) : (
         <LoadingSpinner />
       )}
-    </div>
+    </Fragment>
   );
 }

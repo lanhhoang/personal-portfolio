@@ -1,6 +1,6 @@
 "use client";
 
-import { Fragment, useState, useEffect } from "react";
+import { Fragment } from "react";
 import SectionHeading from "./section-heading";
 import LoadingSpinner from "./loading-spinner";
 import {
@@ -10,7 +10,7 @@ import {
 import { CgWorkAlt } from "react-icons/cg";
 
 import "react-vertical-timeline-component/style.min.css";
-import { getExperiences } from "@/sanity/sanity-utils";
+
 import { Experience as ExperienceType } from "@/types/Experience";
 import { PortableText } from "@portabletext/react";
 import { useSectionInView } from "@/lib/hooks";
@@ -28,23 +28,11 @@ const getExperienceDate = (startDate: string, endDate: string) => {
   return `${start} - ${end}`;
 };
 
-export default function Experience() {
-  const [experiences, setExperiences] = useState<ExperienceType[] | []>([]);
+type ExperienceProps = { experiences: ExperienceType[] };
+
+export default function Experience({ experiences }: ExperienceProps) {
   const { ref } = useSectionInView("Experience", 0.5);
   const { theme } = useThemeContext();
-
-  useEffect(() => {
-    fetchExperiences();
-  }, []);
-
-  const fetchExperiences = async () => {
-    try {
-      const data = await getExperiences();
-      setExperiences(data);
-    } catch (error) {
-      console.error("Error fetching experiences:", error);
-    }
-  };
 
   return (
     <Fragment>

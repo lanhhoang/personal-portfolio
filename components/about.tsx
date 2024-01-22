@@ -1,33 +1,20 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { Fragment } from "react";
 import SectionHeading from "./section-heading";
 import LoadingSpinner from "./loading-spinner";
 import { motion } from "framer-motion";
 import { Profile } from "@/types/Profile";
-import { getProfile } from "@/sanity/sanity-utils";
 import { PortableText } from "@portabletext/react";
 import { useSectionInView } from "@/lib/hooks";
 
-export default function About() {
-  const [profile, setProfile] = useState<Profile | null>(null);
+type AboutProps = { profile: Profile };
+
+export default function About({ profile }: AboutProps) {
   const { ref } = useSectionInView("About");
 
-  useEffect(() => {
-    fetchProfile();
-  }, []);
-
-  const fetchProfile = async () => {
-    try {
-      const data = await getProfile("lucas");
-      setProfile(data);
-    } catch (error) {
-      console.error("Error fetching profile:", error);
-    }
-  };
-
   return (
-    <div>
+    <Fragment>
       {profile ? (
         <motion.section
           ref={ref}
@@ -45,6 +32,6 @@ export default function About() {
       ) : (
         <LoadingSpinner />
       )}
-    </div>
+    </Fragment>
   );
 }
